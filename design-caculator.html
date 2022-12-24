@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>caculator</title>
+  <link rel="stylesheet" href="css/all.min.css" type="text/css">
+</head>
+<style> 
+body{
+  background-color: hsl(0deg 0% 11%);
+}
+table{
+  /* position: absolute; */
+  top: 50%;
+  left: 50%;
+
+}
+
+table tr th input{
+  text-align: right;
+  width: 98%;
+  height: 5rem;
+  font-size: 2rem;
+}
+
+input{
+  width: 100%;
+  height: 86px;
+}
+
+table tr td{
+  cursor: pointer;
+}
+table tr td button{
+  font-size: 3rem;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  background-color: hsl(0deg 0% 31%);
+  color: white;
+  margin: 6px 0 6px;
+}
+.color-1 button{
+  background-color: hsl(0deg 0% 64%);
+  color: black;
+}
+.color-2 {
+  background-color: hsl(35deg 100% 50%);
+  color:white;
+  font-size: 3rem;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+.answer input{
+  background-color: hsl(0deg 0% 11%);
+  color: white;
+  border: 1px solid gray;
+  font-size: 2.4rem;
+  margin-bottom: 2rem;
+}
+.zero button{
+  width: 200px;
+  text-align: left;
+  padding-left: 26px;
+  border-radius: 70px;
+}
+
+</style>
+<body >
+
+
+  <table>
+
+    <tr>
+      <th colspan="4" class="answer">
+        <input type="text" id="res"><br>
+      </th>
+    </tr>
+
+    <tr align="center">
+      <td class="color-1">
+        <button id="clear">AC</button>
+      </td>
+      <td class="color-1">
+        <button value="+/-">+/-</button>
+      </td>
+      <td class="color-1">
+        <button class="color-2" id="remove"><i class="fa-solid fa-delete-left"></i></button><br>
+      </td>
+      <td>
+        <button class="color-2" value="/"><i class="fa-solid fa-divide"></i></button><br>
+      </td>
+    </tr>
+
+    <tr align="center">
+      <td>
+        <button value="7">7</button>
+      </td>
+      <td>
+        <button value="8">8</button>
+      </td>
+      <td>
+        <button value="9">9</button>
+      </td>
+      <td>
+        <button class="color-2" value="*"><i class="fa-solid fa-xmark"></i></button><br>
+      </td>
+    </tr>
+
+    <tr align="center">
+      <td>
+        <button value="4">4</button>
+      </td>
+      <td>
+        <button value="5">5</button>
+      </td>
+      <td>
+        <button value="6">6</button>
+      </td>
+      <td>
+        <button class="color-2" value="-"><i class="fa-solid fa-minus"></i></button><br>
+      </td>
+    </tr>
+
+    <tr align="center">
+      <td>
+        <button value="1">1</button>
+      </td>
+      <td>
+        <button value="2">2</button>
+      </td>
+      <td>
+        <button value="3">3</button>
+      </td>
+      <td>
+        <button class="color-2" value="+"><i class="fa-solid fa-plus"></i></button><br>
+      </td>
+    </tr>
+
+    <tr align="center">
+      
+      <td colspan="2" class="zero">
+        <button value="0">0</button>
+      </td>
+      <td>
+        <button value=".">.</button>
+      </td>
+      <td>
+        <input type="button" class="color-2" id="ans" value="=">
+      </td>
+    </tr>
+
+  </table>
+
+
+  <script>
+
+    var button = document.querySelectorAll('button');
+    var result = document.querySelector('#res');
+    var ans = document.querySelector('#ans');
+    var clear = document.getElementById('clear');
+    var remove = document.getElementById('remove');
+
+    remove.addEventListener('click', function(){
+      abc = result.value.slice(0, result.value.length -1);
+      result.value = abc;
+    })
+
+    clear.addEventListener('click',function(){
+      result.value='';
+    })
+
+    ans.addEventListener('click',function(){
+      var answer = eval(result.value);
+      result.value = answer;
+    })
+
+    for(var i=0; i<button.length; i++)
+    {
+      button[i].addEventListener('click',function(){
+        var lastdigit= result.value.slice(-1);
+
+        if(this.value == '+'|| this.value == '-'|| this.value == '*'|| this.value == '/'|| this.value == '.'|| this.value == '%'|| this.value == '+/-')
+        {
+          if(lastdigit == '+'|| lastdigit == '-'|| lastdigit == '*'|| lastdigit == '/' || lastdigit == '.' || lastdigit == '%' || lastdigit == '+/-')
+          {
+            result.value = result.value;
+          }
+          else
+          {
+            result.value = result.value + this.value;
+          }
+        }
+        else
+        {
+          result.value = result.value + this.value;
+        }
+
+      })
+    }
+
+  </script>
+
+
+  
+</body>
+</html>
